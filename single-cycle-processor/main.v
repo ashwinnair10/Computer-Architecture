@@ -15,7 +15,7 @@ module main(
     alucontrol call(aluop,instr[5:0],aluctrl);
 
     wire[31:0] r1,r2;
-    wire[31:0] wd;
+    reg[31:0] wd;
 
     //register handling
     regfile obj3(instr[25:21],instr[20:16],instr[15:11],r1,r2,wd,regdst,regwrite);
@@ -36,14 +36,16 @@ module main(
     //data handling
     datamemory obj6(memwrite,memtoread,aluoutput,r2,dataout);
 
-    if(memtoreg==1'b1)
-        assign wd=dataout;
-    else
-        assign wd=aluoutput;
+    always @(*)begin
+        if(memtoreg==1'b1)
+            wd=dataout;
+        else
+            wd=aluoutput;
+    end
     
     wire[31:0] sl;
     shiftleft shl(offset,sl);
-    
+
     //pc handling
     always @(posedge clk)begin
         pci=pci+1;
