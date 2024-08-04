@@ -1,6 +1,6 @@
 module signextend(
     input[15:0] ip,
-    output[31:0] op
+    output reg[31:0] op
 );
     reg[15:0] ans;
     always @(*)begin

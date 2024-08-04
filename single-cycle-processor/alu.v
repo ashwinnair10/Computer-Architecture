@@ -1,9 +1,9 @@
 module alu(
-    input[31:0] a,b,r
+    input[31:0] a,b,r,
     input[1:0] alucontrol,
     input alusrc,
-    output[31:0] c,
-    output zero
+    output reg[31:0] c,
+    output reg zero
 );
     always @(*)begin
         if(alusrc==0)begin
