@@ -1,4 +1,4 @@
-module maindec(
+module maindecoder(
     input clk,reset,
     input[5:0] op,
     output pcwrite,memwrite,irwrite,regwrite,alusrca,branch,iord,memtoreg,regdst,

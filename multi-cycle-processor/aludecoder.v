@@ -1,4 +1,4 @@
-module aludec(
+module aludecoder(
     input[5:0] funct,
     input[1:0] aluop,
     output reg[2:0] alucontrol

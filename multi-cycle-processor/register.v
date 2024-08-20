@@ -1,4 +1,4 @@
-module regfile(
+module register(
     input clk,we3,
     input[4:0] ra1,ra2,wa3,
     input[31:0] wd3,

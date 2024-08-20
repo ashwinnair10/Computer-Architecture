@@ -1,4 +1,4 @@
-module mem(
+module memory(
     input clk,we,
     input[31:0] a,wd,
     output[31:0] rd

@@ -1,4 +1,4 @@
-module sl2(
+module sl(
     input[31:0] a,
     output[31:0] b
 );

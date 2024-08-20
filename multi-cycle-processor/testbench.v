@@ -1,16 +1,16 @@
-module tb();
+module testbench();
     reg clk;
     reg reset;
     wire [31:0] writedata, dataadr;
     wire memwrite;
     reg [31:0] cycle;
-    top dut(clk, reset, writedata, dataadr, memwrite);
+    topmodule tb(clk, reset, writedata, dataadr, memwrite);
     initial begin
         reset <= 1; # 12; reset <= 0;
         cycle <= 1;
     end
     initial begin
-        $dumpfile("tb.vcd");
+        $dumpfile("output.vcd");
         $dumpvars(0,tb);
     end
     always begin

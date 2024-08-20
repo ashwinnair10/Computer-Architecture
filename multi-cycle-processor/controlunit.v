@@ -1,4 +1,4 @@
-module controller(
+module controlunit(
     input clk,reset,
     input[5:0] op,funct,
     input zero,
@@ -9,8 +9,8 @@ module controller(
 );
     wire[1:0] aluop;
     wire branch,pcwrite;
-    maindec md(clk,reset,op,pcwrite,memwrite,irwrite,regwrite,alusrca,branch,iord,memtoreg,regdst,alusrcb,pcsrc,aluop);
-    aludec ad(funct,aluop,alucontrol);
+    maindecoder md(clk,reset,op,pcwrite,memwrite,irwrite,regwrite,alusrca,branch,iord,memtoreg,regdst,alusrcb,pcsrc,aluop);
+    aludecoder ad(funct,aluop,alucontrol);
 
     assign pcen=pcwrite|(branch&zero);
 endmodule
