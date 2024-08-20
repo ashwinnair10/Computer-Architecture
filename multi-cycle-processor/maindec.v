@@ -69,19 +69,19 @@ module maindec(
     assign {pcwrite,memwrite,irwrite,regwrite,alusrca,branch,iord,memtoreg,regdst,alusrcb,pcsrc,aluop}=controls;
     always @( * )begin
         case(s)
-            FETCH: controls <= 19'b1010_00000_0100_00;
-            DECODE: controls <= 19'b0000_00000_1100_00;
-            MEMADR: controls <= 19'b0000_10000_1000_00;
-            MEMRD: controls <= 19'b0000_00100_0000_00;
-            MEMWB: controls <= 19'b0001_00010_0000_00;
-            MEMWR: controls <= 19'b0100_00100_0000_00;
-            EXECUTE: controls <= 19'b0000_10000_0000_10;
-            ALUWB: controls <= 19'b0001_00001_0000_00;
-            BRANCH: controls <= 19'b0000_11000_0001_01;
-            ADDIEX: controls <= 19'b0000_10000_1000_00;
-            ADDIWB: controls <= 19'b0001_00000_0000_00;
-            JUMP: controls <= 19'b1000_00000_0010_00;
-            default: controls <= 19'b0000_xxxxx_xxxx_xx;
+            FETCH: controls <= 19'b101000000010000;
+            DECODE: controls <= 19'b000000000110000;
+            MEMADR: controls <= 19'b000010000100000;
+            MEMRD: controls <= 19'b000000100000000;
+            MEMWB: controls <= 19'b000100010000000;
+            MEMWR: controls <= 19'b010000100000000;
+            EXECUTE: controls <= 19'b000010000000010;
+            ALUWB: controls <= 19'b000100001000000;
+            BRANCH: controls <= 19'b000011000000101;
+            ADDIEX: controls <= 19'b000010000100000;
+            ADDIWB: controls <= 19'b000100000000000;
+            JUMP: controls <= 19'b100000000001000;
+            default: controls <= 19'b0000xxxxxxxxxxx;
         endcase
     end
 endmodule

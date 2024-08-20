@@ -9,7 +9,6 @@ module alu(
             3'b000:op<=a&b;
             3'b001:op<=a|b;
             3'b010:op<=a+b;
-            3'b011:op<=0;//unused
             3'b110:op<=a-b;
             3'b111:op<=a<b?1:0;
             default:op<=0;

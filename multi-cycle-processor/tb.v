@@ -20,11 +20,11 @@ module tb();
     always@(negedge clk)begin
         if (memwrite) begin
             if (dataadr === 84 & writedata == 7) begin
-                $display("Simulation succeeded");
+                $display("Success");
                 $stop;
             end
             else if (dataadr !== 80) begin
-                $display("Simulation failed");
+                $display("Critical Failure");
                 $stop;
             end
         end

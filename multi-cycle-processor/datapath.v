@@ -28,7 +28,6 @@ module datapath(
     mux4 #(32) srcbmux(writedata,32'b100,signimm,signimmsh,alusrcb,srcb);
     alu alu(srca,srcb,alucontrol,aluresult,zero);
     flopr #(32) alureg(clk,reset,aluresult,aluout);
-    mux3 #(32) pcmux(aluresult,aluout,
-    {pc[31:28],instr[25:0],2'b00},pcsrc,pcnext);
+    mux3 #(32) pcmux(aluresult,aluout,{pc[31:28],instr[25:0],2'b00},pcsrc,pcnext);
     
 endmodule
