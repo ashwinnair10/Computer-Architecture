@@ -4,15 +4,17 @@ module maindecoder(
     output pcwrite,memwrite,irwrite,regwrite,alusrca,branch,iord,memtoreg,regdst,
     output[1:0] alusrcb,pcsrc,aluop
 );
-    parameter FETCH=0;
-    parameter DECODE=1;
-    parameter MEMADR=2;
-    parameter MEMRD=3;
-    parameter MEMWB=4;
-    parameter MEMWR=5;
-    parameter EXECUTE=6;
-    parameter ALUWB=7;
-    parameter BRANCH=8;
+    parameter FETCH=5'b00000;
+    parameter DECODE=5'b00001;
+    parameter MEMADR=5'b00010;
+    parameter MEMRD=5'b00011;
+    parameter MEMWB=5'b00100;
+    parameter MEMWR=5'b00101;
+    parameter EXECUTE=5'b00110;
+    parameter ALUWB=5'b00111;
+    parameter BRANCH=5'b01000;
+    parameter ADDIEX=5'b01001;
+    parameter ADDIWB=5'b01010;
 
     parameter LW=4'b1010;
     parameter SW=4'b1001;
@@ -20,6 +22,7 @@ module maindecoder(
     parameter NAND=4'b0010;
     parameter BEQ=4'b1011;
     parameter JAL=4'b1101;
+    parameter ADDI=4'b1111;
 
     reg[31:0] s,ns;
     reg[14:0] control;
@@ -42,6 +45,7 @@ module maindecoder(
                     NAND:ns<=EXECUTE;
                     BEQ:ns<=BRANCH;
                     JAL:ns<=EXECUTE;
+                    ADDI:ns<=ADDIEX;
                     default:ns<=FETCH;
                 endcase
             MEMADR:
@@ -54,6 +58,8 @@ module maindecoder(
             MEMWB:ns<=FETCH;
             MEMWR:ns<=FETCH;
             EXECUTE:ns<=ALUWB;
+            ADDIEX:ns<=ADDIWB;
+            ADDIWB:ns<=FETCH;
             BRANCH:ns<=FETCH;
             default:ns<=FETCH;
         endcase
@@ -70,6 +76,8 @@ module maindecoder(
             EXECUTE: control<=15'b0_0_0_0_1_0_0_0_0_00_00_10;
             ALUWB: control<=15'b0_0_0_1_0_0_0_0_1_00_00_00;
             BRANCH: control<=15'b0_0_0_0_1_0_0_0_0_00_01_01;
+            ADDIEX: control<=15'b0_0_0_0_1_0_0_0_0_10_00_00;
+            ADDIWB: control<=15'b0_0_0_1_0_0_0_0_0_00_00_00;
             default: control<=15'b0000xxxxxxxxxxx;
         endcase
     end

@@ -1,9 +1,8 @@
 module topmodule(
-    input clk,reset,
-    output[15:0] writedata,addr,
-    output memwrite
+    input clk,reset
 );
-    wire[15:0] readdata;
-    multicycle mc(clk,reset,addr,writedata,memwrite,readdata);
-    memory mem(clk,memwrite,addr,writedata,readdata);
+    wire[15:0] readdata,wd,addr;
+    wire memwrite;
+    multicycle mc(clk,reset,addr,wd,memwrite,readdata);
+    memory mem(clk,memwrite,addr,wd,readdata);
 endmodule
