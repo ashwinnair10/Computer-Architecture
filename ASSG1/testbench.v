@@ -14,7 +14,6 @@ module testbench();
     always begin
         clk<=1; #5; clk<=0; #5;
         cycle<=cycle+1;
-        $display("cycle number:%d",cycle);
     end
     always @(negedge clk) begin
         if (cycle==60)begin

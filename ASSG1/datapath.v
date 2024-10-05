@@ -5,7 +5,7 @@ module datapath(
     output[3:0] op,
     output zero,carry,
     output[15:0] addr,writedata,
-    input[15:0] readdata
+    input[15:0] readdata,instruction
 );
     wire[2:0] writereg;
     wire[2:0] returnreg;
@@ -14,7 +14,7 @@ module datapath(
 
     ffenabled #(16) pcreg(clk,reset,pcen,pcnext,pc);
     mux2 #(16) addrmux(pc,aluout,iord,addr);
-    ffenabled #(16) instrreg(clk,reset,irwrite,readdata,instr);
+    ffenabled #(16) instrreg(clk,reset,irwrite,instruction,instr);
     ff #(16) datareg(clk,reset,readdata,data);
 
     mux2 #(3) regdstmux(instr[8:6],instr[5:3],regdst,writereg);
