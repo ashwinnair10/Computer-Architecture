@@ -16,7 +16,7 @@ module testbench();
         cycle<=cycle+1;
     end
     always @(negedge clk) begin
-        if (cycle==60)begin
+        if (cycle==69)begin
             $display("Code run success");
             $finish;
         end

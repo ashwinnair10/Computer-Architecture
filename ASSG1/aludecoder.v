@@ -10,9 +10,9 @@ module aludecoder(
                 case(op)
                     4'b0000:alucontrol<=3'b010;
                     4'b0010:alucontrol<=3'b110;
-                    default:alucontrol<=3'bxxx;
+                    default:alucontrol<=3'b000;
                 endcase
-            default:alucontrol<=3'bxxx;
+            default:alucontrol<=3'b000;
         endcase
     end
 endmodule

@@ -1,0 +1,4 @@
+#!bin/sh
+make
+vvp output
+gtkwave output.vcd
